@@ -1,0 +1,11 @@
+﻿  main.cpp
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(46,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(47,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(48,14): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(49,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(51,36): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(51,30): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(51,23): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(51,18): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(52,14): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+  Transformations.vcxproj -> C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\x64\Debug\Transformations.exe
