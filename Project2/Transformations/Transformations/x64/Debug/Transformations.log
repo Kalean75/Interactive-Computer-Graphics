@@ -1,11 +1,37 @@
 ﻿  main.cpp
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(46,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(47,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(48,14): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(49,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(51,36): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(51,30): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(51,23): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(51,18): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(52,14): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
-  Transformations.vcxproj -> C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\x64\Debug\Transformations.exe
+C:\Users\White\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(52,66): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\White\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(58,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\White\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(65,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\White\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(78,27): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\White\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(132,51): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\White\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(133,51): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\White\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(165,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\White\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(166,15): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\White\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\White\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(168,15): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\White\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(170,36): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
+C:\Users\White\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(170,30): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
+C:\Users\White\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(170,23): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
+C:\Users\White\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(170,18): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
+C:\Users\White\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(194,57): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Transformations.vcxproj -> C:\Users\White\source\repos\Interactive-Computer-Graphics\Project2\Transformations\x64\Debug\Transformations.exe
