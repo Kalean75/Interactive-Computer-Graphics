@@ -150,6 +150,7 @@ void myIdle()
     int blue = 0.0f;
     int alpha = 1.0f;
     //handle animations here
+    //black for clarity
     glClearColor(red, green, blue, alpha);
     //Tell GLUT to redraw
     glutPostRedisplay();
@@ -268,7 +269,8 @@ void initGlut(int argc, char** argv)
     //initialize model
     //openGL initializations
     //set the background color
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    //black for clarity
+    glClearColor(0.5f, 1.0f, 0.0f, 1.0f);
 }
 
 int main(int argc, char** argv)

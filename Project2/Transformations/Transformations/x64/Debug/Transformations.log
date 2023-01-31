@@ -11,16 +11,6 @@ C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Trans
           [
               T=float
           ]
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(118,59): warning C4305: 'argument': truncation from 'double' to 'const T'
-          with
-          [
-              T=float
-          ]
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(118,64): warning C4244: 'argument': conversion from 'int' to 'const T', possible loss of data
-          with
-          [
-              T=float
-          ]
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(119,59): warning C4305: 'argument': truncation from 'double' to 'const T'
           with
           [
@@ -45,12 +35,12 @@ C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Trans
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(149,15): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(150,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(151,15): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(153,36): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(153,30): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(153,23): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(153,18): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(184,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(184,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(154,36): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(154,30): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(154,23): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(154,18): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(185,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project2\Transformations\Transformations\main.cpp(185,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
