@@ -16,14 +16,14 @@
 
 int DEG2RAD(int degrees);
 
-int window_width = 1920;
-int window_height = 1080;
-int Xcoord = 0;
-int Ycoord = 0;
+float window_width = 1920.0f;
+float window_height = 1080.0f;
+float Xcoord = 0;
+float Ycoord = 0;
 int mouseButton;
 int mouseState;
 //Intial position of object
-cy::Vec3f pos = cy::Vec3f(0.0f, 0.0f, -50.0f);
+cy::Vec3f pos = cy::Vec3f(0.0f, 0.0f, 50.0f);
 
 //vertex array and vertex buffer
 GLuint vertexArray;
@@ -34,11 +34,10 @@ cy::TriMesh mesh;
 cy::GLSLShader shader;
 
 //MVP matrices
-//cy::Matrix4f translMatrix = cy::Matrix4f::Identity();
 cy::Matrix4f rotMatrix = cy::Matrix4f::Identity();
 cy::Matrix4f viewMatrix = cy::Matrix4f::Identity();
 cy::Matrix4f ModelMatrix = cy::Matrix4f::Identity();
-cy::Matrix4f projectionMatrix = cy::Matrix4f::Perspective(DEG2RAD(60), float(window_width) / float(window_height), 0.1f, 100.0f);
+cy::Matrix4f projectionMatrix = cy::Matrix4f::Perspective(DEG2RAD(60), float(window_width) / float(window_height), 0.1f, 1000.0f);
 cy::Matrix4f mvp;
 
 //flag for ortho perspective
@@ -72,7 +71,7 @@ void myKeyboard(unsigned char key, int x, int y)
             if (perspective)
             {
                 perspective = false;
-                projectionMatrix.SetPerspective(DEG2RAD(60), float(window_width) / float(window_height), 0.1f, 100.0f);
+                projectionMatrix.SetPerspective(DEG2RAD(60), float(window_width) / float(window_height), 0.1f, 1000.0f);
             }
             //orthogonal perspective
             else
@@ -115,19 +114,22 @@ void myMouseMotion(int x, int y)
     //right mouse button
     if (mouseButton == GLUT_RIGHT_BUTTON)
     {
-        viewMatrix.AddTranslation(cy::Vec3f(pos) * 0.0005 * (x - Xcoord));
-        viewMatrix.AddTranslation(cy::Vec3f(pos) * 0.0005 * (y - Ycoord));
+        viewMatrix.AddTranslation(pos * 0.0005 * (x - Xcoord));
+        viewMatrix.AddTranslation(pos * 0.0005 * (y - Ycoord));
+        mvp = projectionMatrix * viewMatrix * ModelMatrix;
     }
     //left mouse button
     if (mouseButton == GLUT_LEFT_BUTTON)
     {
         //Y is reversed for some reason....
-        viewMatrix *= cy::Matrix4f::RotationX(-((y-Ycoord) * M_PI) / 360 * 0.05);
+        viewMatrix *= cy::Matrix4f::RotationX(((y-Ycoord) * M_PI) / 360 * 0.05);
         viewMatrix *= cy::Matrix4f::RotationY(((x-Xcoord) * M_PI) / 360 * 0.05);
-
+        mvp = projectionMatrix * viewMatrix * ModelMatrix;
     }
     Xcoord = x;
     Ycoord = y;
+    glUseProgram(prog.GetID());
+    prog["mvp"] = projectionMatrix * viewMatrix * ModelMatrix;
 }
 //Handle mouse motion while a button is NOT down
 void myMousePassive(int x, int y)
@@ -159,18 +161,17 @@ void myIdle()
 void initObject(bool load)
 {
     bool success = mesh.LoadFromFileObj("teapot.obj",load);
-    /*if (!success)
+    if (!success)
     {
         printf("Failed");
-    }**/
+    }
 }
 //Compile the shaders
 void setshaders()
 {
    prog.BuildFiles("shader.vert", "shader.frag");
-   prog.RegisterUniform(0, "ModelMatrix");
-   prog.RegisterUniform(1, "viewMatrix");
-   prog.RegisterUniform(2, "projectionMatrix");
+   prog.Bind();
+   prog["mvp"] = mvp;
 }
 
 //Initialize MVP matrices
@@ -182,42 +183,16 @@ void initMatrices()
     //view Matrix
     viewMatrix.SetView(pos, cy::Vec3f(0.0f, 0.0f, 2.0f), cy::Vec3f(0.0f, 1.0f, 0.0f));
     //projection Matrix
-    projectionMatrix.SetPerspective(DEG2RAD(60.0f), float(window_width) / float(window_height), 0.1f, 100.0f);
-}
-//Unused
-/*void initBuffers()
-{
-    rotMatrix.SetRotation(cameraCoords, 0.0f);
-    //projection matrix
-    projectionMatrix = cy::Matrix4f::Perspective(DEG2RAD(40), float(window_width) / float(window_height), 0.1f, 100.0f);
-    viewMatrix.SetView(pos, fr,cameraCoords);
-    //viewMatrix *= translMatrix;
-    //viewMatrix *= rotMatrix;
-    ModelMatrix.Scale(20.0f);
+    projectionMatrix.SetPerspective(DEG2RAD(60.0f), float(window_width) / float(window_height), 0.1f, 1000.0f);
     mvp = projectionMatrix * viewMatrix * ModelMatrix;
-    glClearColor(0.0, 0.0, 0.0, 1.0);
-    initObject(true);
-    glGenVertexArrays(1, &vertexArray);
-    glBindVertexArray(vertexArray);
-    glGenBuffers(1, &buff);
-    glBindBuffer(GL_ARRAY_BUFFER, buff);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(cy::Vec4f) * mesh.NV(), &mesh.V(0), GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-    glBindVertexArray(0);
-}*/
+}
 void myDisplay()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     //initMatrices();
-    prog.SetUniform(2, projectionMatrix);
-    prog.SetUniform(1, viewMatrix);
-    prog.SetUniform(0, ModelMatrix);
-
-    glBindVertexArray(vertexArray);
+    glUseProgram(prog.GetID());
     prog.Bind();
     glDrawArrays(GL_POINTS, 0, sizeof(cy::Vec3f) * mesh.NF());
-    glBindVertexArray(0);
-    //glDisableVertexAttribArray(0);
     glutSwapBuffers();
 }
 //initialize Buffers
@@ -227,13 +202,8 @@ void initVertexArray()
     glBindVertexArray(vertexArray);
     glGenBuffers(1, &buff);
     glBindBuffer(GL_ARRAY_BUFFER, buff);
-
     glBufferData(GL_ARRAY_BUFFER, sizeof(cy::Vec3f)*mesh.NV(), &mesh.V(0), GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, buff);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
-    glBindVertexArray(0);
+    prog.SetAttribBuffer("pos", buff, 3);
 }
 
 //GLUT initializations
@@ -288,7 +258,7 @@ int main(int argc, char** argv)
     initVertexArray();
     //Other initializations
     //call main loop
-   glutMainLoop();
+    glutMainLoop();
     //Exit when main loop is done
     return 0;
 }
