@@ -28,7 +28,7 @@ int mouseState;
 //Intial position of object
 cy::Vec3f pos = cy::Vec3f(0.0f, 0.0f, 50.0f);
 //light position
-cy::Vec3f lightPos = cy::Vec3f(150.0f, 0.0f, 50.0f);
+cy::Vec3f lightPos = cy::Vec3f(100.0f, 0.0f, 50.0f);
 //vertex array and vertex buffer
 GLuint vertexArray;
 GLuint buff;
@@ -218,8 +218,10 @@ void initMatrices()
 }
 void myDisplay()
 {
+    glEnable(GL_LIGHTING);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
+    GLfloat lightp[] = { 100, 1., 1., 0. };
+    glLightfv(GL_LIGHT0, GL_POSITION, lightp);
     glUseProgram(prog.GetID());
 
 

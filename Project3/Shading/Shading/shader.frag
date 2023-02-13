@@ -8,7 +8,6 @@ in vec3 viewPos;
 in vec3 lightDirection;
 
 uniform sampler2D tex;
-uniform bool textureShown;
 
 void main()
 {

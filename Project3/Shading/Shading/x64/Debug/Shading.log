@@ -51,6 +51,6 @@ C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shadi
           [
               T=float
           ]
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(233,69): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(277,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(235,69): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(279,23): warning C4018: '<': signed/unsigned mismatch
   Shading.vcxproj -> C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\x64\Debug\Shading.exe
