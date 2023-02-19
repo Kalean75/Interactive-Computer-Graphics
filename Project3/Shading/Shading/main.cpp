@@ -1,6 +1,6 @@
 //Devin White
 //Cs 5610 Interactive Computer Graphics
-//Project 3 -Shading
+//Project 3 - Shading
 #include <GL/glew.h>
 #include <GL/GL.h>
 #include <GL/freeglut.h>
@@ -33,8 +33,14 @@ cy::Vec3f lightPos = cy::Vec3f(100.0f, 0.0f, 50.0f);
 GLuint vertexArray;
 GLuint buff;
 GLuint nbuff;
-GLuint ebuff;
-std::vector<unsigned int> vertices;
+GLuint tbuff;
+GLuint textob1;
+GLuint textob2;
+GLuint loc;
+
+std::vector<cy::Vec3f> vertices;
+std::vector<cy::Vec3f> Normals;
+
 cy::GLSLProgram prog;
 cy::TriMesh mesh;
 cy::GLSLShader shader;
@@ -50,6 +56,9 @@ cy::Matrix4f mv; //mv matrix
 
 cy::Matrix4f light = cy::Matrix4f::Identity();
 
+unsigned txtW = 600; //512
+unsigned txtH = 600; //512
+int glutControl;
 //flag for ortho perspective
 bool perspective = false;
 //converts degrees to radians
@@ -105,9 +114,11 @@ void myKeyboard2(int key, int x, int y)
     case GLUT_KEY_F6:
         //recompile shaders
         prog.BuildFiles("shader.vert", "shader.frag");
+        prog.Bind();
         break;
     }
-} //glutGetModifiers();
+    glutGetModifiers();
+}
 
 //Handles mouse input
 void myMouse(int button, int state, int x, int y)
@@ -117,6 +128,20 @@ void myMouse(int button, int state, int x, int y)
     Ycoord = y;
     mouseButton = button;
     mouseState = state;
+    glutControl = glutGetModifiers();
+    //rotate light
+    if (glutGetModifiers() == GLUT_ACTIVE_CTRL)
+    {
+        if (state == GLUT_DOWN) {
+            if (state == GLUT_LEFT_BUTTON) {
+                light = cy::Matrix4f::RotationX(((y - Ycoord) * M_PI) / 360 * 0.05);
+                light = cy::Matrix4f::RotationY(((x - Xcoord) * M_PI) / 360 * 0.05);
+            }
+
+        }
+    }
+    prog["light"] = light;
+    prog["lightPos"] = lightPos;
 }
 //Handle mouse motion here while a button is down
 void myMouseMotion(int x, int y)
@@ -128,11 +153,13 @@ void myMouseMotion(int x, int y)
         viewMatrix.AddTranslation(pos * 0.0005 * (y - Ycoord));
     }
     //left mouse button
-    if (mouseButton == GLUT_LEFT_BUTTON)
+    if (mouseButton == GLUT_LEFT_BUTTON && glutControl != GLUT_ACTIVE_CTRL)
     {
         //Y is reversed for some reason....
         viewMatrix *= cy::Matrix4f::RotationX(((y - Ycoord) * M_PI) / 360 * 0.05);
         viewMatrix *= cy::Matrix4f::RotationY(((x - Xcoord) * M_PI) / 360 * 0.05);
+        light = cy::Matrix4f::RotationX(((y - Ycoord) * M_PI) / 360 * 0.05);
+        light = cy::Matrix4f::RotationY(((x - Xcoord) * M_PI) / 360 * 0.05);
     }
     Xcoord = x;
     Ycoord = y;
@@ -202,11 +229,13 @@ void initMatrices()
 {
     //Model Matrix
     mesh.ComputeBoundingBox();
-    ModelMatrix *= cy::Matrix4f::RotationX(-45);
+    ModelMatrix *= cy::Matrix4f::RotationX(DEG2RAD(-90));
+    //ModelMatrix.Scale(10.0f);
     //view Matrix
-    viewMatrix.SetView(pos, cy::Vec3f(0.0f, 0.0f, 2.0f), cy::Vec3f(0.0f, 1.0f, 0.0f));
+    viewMatrix.SetView(pos, cy::Vec3f(0.0f, 5.0f, 2.0f), cy::Vec3f(0.0f, 0.0f, 1.0f));
     //light
-    light.SetView(pos, cy::Vec3f(0.0f, 0.0f, 0.0f), cy::Vec3f(0.0f, 1.0f, 0.0f));
+    light.SetView(lightPos, cy::Vec3f(0.0f, 0.0f, 0.0f), cy::Vec3f(0.0f, 0.0f, 0.0f));
+    light = light.Scale(10.0f);
     //projection Matrix
     projectionMatrix.SetPerspective(DEG2RAD(60.0f), float(window_width) / float(window_height), 0.1f, 1000.0f);
     mv = viewMatrix * ModelMatrix;
@@ -216,27 +245,44 @@ void initMatrices()
     NormMatrix.Transpose();
     mvp = projectionMatrix * viewMatrix * ModelMatrix;
 }
+
+void updateLight()
+{
+    if (glutControl == GLUT_ACTIVE_CTRL)
+    {
+        if (mouseState == GLUT_DOWN) {
+            if (mouseState == GLUT_LEFT_BUTTON) {
+                light = cy::Matrix4f::RotationX(((Ycoord)*M_PI) / 360 * 0.05);
+                light = cy::Matrix4f::RotationY(((Xcoord)*M_PI) / 360 * 0.05);
+            }
+        }
+    }
+    prog["light"] = light;
+    prog["lightPos"] = lightPos;
+}
+
+
 void myDisplay()
 {
-    glEnable(GL_LIGHTING);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    GLfloat lightp[] = { 100, 1., 1., 0. };
-    glLightfv(GL_LIGHT0, GL_POSITION, lightp);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_DEPTH_TEST);
     glUseProgram(prog.GetID());
 
-
+    updateLight();
     prog.Bind();
     //glDrawArrays(GL_POINTS, 0, sizeof(cy::Vec3f) * mesh.NF()); //old vertices
+    glGenVertexArrays(1, &vertexArray);
     glBindVertexArray(buff);
 
     glBindBuffer(GL_ARRAY_BUFFER, buff);
     glBindBuffer(GL_ARRAY_BUFFER, nbuff);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebuff);
-    glDrawElements(GL_TRIANGLES, vertices.size(), GL_UNSIGNED_INT, 0);
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(cy::Vec3f) * mesh.NF());
     glBindVertexArray(0);
-    
+
     glutSwapBuffers();
 }
+
 //initialize Buffers
 void initBuffers()
 {
@@ -245,43 +291,44 @@ void initBuffers()
     glBindVertexArray(vertexArray);
     setMesh();
 
+    //Triangular mesh
     glGenBuffers(1, &buff);
     glBindBuffer(GL_ARRAY_BUFFER, buff);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(cy::Vec3f) * mesh.NV(), &mesh.V(0), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(cy::Vec3f) * mesh.NF() * 3, &vertices[0], GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, buff);
-    glVertexAttribPointer(0, 3,GL_FLOAT, GL_FALSE, 0, 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+    prog.SetAttribBuffer("pos", buff, 3);
 
- 
     //Normals
     glGenBuffers(1, &nbuff);
     glBindBuffer(GL_ARRAY_BUFFER, nbuff);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(cy::Vec3f) * mesh.NVN(), &mesh.VN(0), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(cy::Vec3f) * mesh.NF() * 3, &Normals[0], GL_STATIC_DRAW);
     glEnableVertexAttribArray(1);
     glBindBuffer(GL_ARRAY_BUFFER, nbuff);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
-
-    glGenBuffers(1, &ebuff);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebuff);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, vertices.size() * sizeof(unsigned int), &vertices[0], GL_STATIC_DRAW);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+    prog.SetAttribBuffer("norms", nbuff, 3);
 
     glBindVertexArray(0);
 
-    prog.SetAttribBuffer("pos", buff, 3);
-    //prog.SetAttribBuffer("norms", nbuff, 3);
 
 }
 
 void setMesh()
 {
 
-    for (int i = 0; i < mesh.NF(); i++)
+    for (unsigned i = 0; i < mesh.NF(); i++)
     {
         for (int j = 0; j < 3; j++)
         {
-            unsigned int index = mesh.F(i).v[j];
-            vertices.push_back(index);
+            vertices.push_back(mesh.V(mesh.F(i).v[j]));
+        }
+    }
+    for (unsigned i = 0; i < mesh.NF(); i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            Normals.push_back(mesh.VN(mesh.FN(i).v[j]));
         }
     }
 }

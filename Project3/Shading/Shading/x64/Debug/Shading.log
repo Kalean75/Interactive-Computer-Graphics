@@ -1,56 +1,89 @@
 ﻿  main.cpp
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(47,66): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(53,66): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(58,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(65,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(84,52): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(67,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(74,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(93,52): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(116,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(117,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(127,48): warning C4305: 'argument': truncation from 'double' to 'const T'
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(127,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(128,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(137,77): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(128,48): warning C4305: 'argument': truncation from 'double' to 'const T'
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(138,77): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(134,75): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(152,48): warning C4305: 'argument': truncation from 'double' to 'const T'
           with
           [
               T=float
           ]
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(135,75): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(153,48): warning C4305: 'argument': truncation from 'double' to 'const T'
           with
           [
               T=float
           ]
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(137,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(138,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(157,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(158,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(168,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(169,15): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(170,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(171,15): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(174,36): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(174,30): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(174,23): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(174,18): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(211,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(211,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(159,75): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(235,69): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(279,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(160,75): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(161,69): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(162,69): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(164,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(165,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(184,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(185,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(195,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(196,15): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(197,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(198,15): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(201,36): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(201,30): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(201,23): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(201,18): warning C4244: 'argument': conversion from 'int' to 'GLclampf', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(232,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(240,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(240,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(255,71): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\Shading\main.cpp(256,71): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
   Shading.vcxproj -> C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project3\Shading\x64\Debug\Shading.exe
