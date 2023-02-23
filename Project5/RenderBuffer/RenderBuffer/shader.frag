@@ -1,7 +1,5 @@
 #version 330 core
 
-out vec4 color;
-
 in vec3 norms;
 in vec3 normalPos;
 in vec3 viewPos;
@@ -10,6 +8,8 @@ in vec2 texCoords;
 
 uniform sampler2D texKd;
 uniform sampler2D texKs;
+
+out vec4 color;
 
 void main()
 {

@@ -22,12 +22,12 @@ C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project5\Rende
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project5\RenderBuffer\include\lodepng\lodepng.cpp(5332,57): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project5\RenderBuffer\include\lodepng\lodepng.cpp(5445,57): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project5\RenderBuffer\include\lodepng\lodepng.cpp(5559,33): warning C4334: '<<': result of 32-bit shift implicitly converted to 64 bits (was 64-bit shift intended?)
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project5\RenderBuffer\RenderBuffer\main.cpp(161,48): warning C4305: 'argument': truncation from 'double' to 'const T'
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project5\RenderBuffer\RenderBuffer\main.cpp(171,48): warning C4305: 'argument': truncation from 'double' to 'const T'
           with
           [
               T=float
           ]
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project5\RenderBuffer\RenderBuffer\main.cpp(162,48): warning C4305: 'argument': truncation from 'double' to 'const T'
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project5\RenderBuffer\RenderBuffer\main.cpp(172,48): warning C4305: 'argument': truncation from 'double' to 'const T'
           with
           [
               T=float

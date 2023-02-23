@@ -20,8 +20,8 @@
 
 int DEG2RAD(int degrees);
 
-float window_width = 1920.0f;
-float window_height = 1080.0f;
+float windowWidth = 1920.0f;
+float windowHeight = 1080.0f;
 float Xcoord = 0;
 float Ycoord = 0;
 int mouseButton;
@@ -43,30 +43,40 @@ GLuint textb1;
 GLuint textb2;
 GLuint loc;
 GLuint depthBuffer;
-GLuint renderedTexture;
+GLuint frameBuffer = 0;
+GLuint planeVertexArray;
+GLuint planeVertexBuff;
 
 std::vector<cy::Vec3f> vertices;
 std::vector<cy::Vec3f> Normals;
 std::vector<cy::Vec3f> textureCoords;
+
 cy::GLSLProgram prog;
+cy::GLSLProgram prog2;
 cy::TriMesh mesh;
 cy::GLSLShader shader;
+cy::GLSLShader planeShader;
+cy::GLRenderTexture2D renderText;
 
 //MVP matrices
 cy::Matrix3f NormMatrix = cy::Matrix3f::Identity();
 cy::Matrix4f rotMatrix = cy::Matrix4f::Identity();
 cy::Matrix4f viewMatrix = cy::Matrix4f::Identity();
 cy::Matrix4f ModelMatrix = cy::Matrix4f::Identity();
-cy::Matrix4f projectionMatrix = cy::Matrix4f::Perspective(DEG2RAD(60), float(window_width) / float(window_height), 0.1f, 1000.0f);
+cy::Matrix4f projectionMatrix = cy::Matrix4f::Perspective(DEG2RAD(60), float(windowWidth) / float(windowHeight), 0.1f, 1000.0f);
 cy::Matrix4f mvp; //MVP matrix
 cy::Matrix4f mv; //mv matrix
+
+//not sure if needed..
+cy::Matrix4f objmvp; //MVP matrix
+cy::Matrix4f objmv; //mv matrix
 
 cy::Matrix4f light = cy::Matrix4f::Identity();
 
 std::vector<unsigned char> texture1;
 std::vector<unsigned char> texture2;
-unsigned txtW = 600; //512
-unsigned txtH = 600; //512
+unsigned txtW = 600;
+unsigned txtH = 600; 
 int glutControl;
 //flag for ortho perspective
 bool perspective = false;
@@ -99,7 +109,7 @@ void myKeyboard(unsigned char key, int x, int y)
         if (perspective)
         {
             perspective = false;
-            projectionMatrix.SetPerspective(DEG2RAD(60), float(window_width) / float(window_height), 0.1f, 1000.0f);
+            projectionMatrix.SetPerspective(DEG2RAD(60), windowWidth / windowHeight, 0.1f, 1000.0f);
         }
         //orthogonal perspective
         else
@@ -143,8 +153,8 @@ void myMouse(int button, int state, int x, int y)
     {
         if (state == GLUT_DOWN) {
             if (state == GLUT_LEFT_BUTTON) {
-                light += cy::Matrix4f::RotationX(((y - Ycoord) * M_PI) / 360);
-                light += cy::Matrix4f::RotationY(((x - Xcoord) * M_PI) / 360);
+                light += cy::Matrix4f::RotationX(((y - Ycoord) * M_PI) / 360 * 0.05);
+                light += cy::Matrix4f::RotationY(((x - Xcoord) * M_PI) / 360 * 0.05);
             }
 
         }
@@ -166,8 +176,11 @@ void myMouseMotion(int x, int y)
     {
         viewMatrix *= cy::Matrix4f::RotationX(((y - Ycoord) * M_PI) / 360 * 0.08);
         viewMatrix *= cy::Matrix4f::RotationY(((x - Xcoord) * M_PI) / 360 * 0.08);
-        //light = cy::Matrix4f::RotationX(((y - Ycoord) * M_PI) / 360 *0.05);
-        //light = cy::Matrix4f::RotationY(((x - Xcoord) * M_PI) / 360 * 0.05);
+    }
+    else
+    {
+        light += cy::Matrix4f::RotationX(((y - Ycoord) * M_PI) / 360 *0.05);
+        light += cy::Matrix4f::RotationY(((x - Xcoord) * M_PI) / 360 * 0.05);
     }
     int oldX = Xcoord;
     int oldY = Ycoord;
@@ -179,12 +192,13 @@ void myMouseMotion(int x, int y)
     NormMatrix.Invert();
     NormMatrix.Transpose();
     mvp = projectionMatrix * viewMatrix * ModelMatrix;
-
-    prog["mv"] = mv;
-    prog["normalMatrix"] = NormMatrix;
-    prog["mvp"] = mvp;
-    prog["lightDirection"] = lightPos;
+    //prog["mv"] = objmv;
+    //prog["normalMatrix"] = NormMatrix;
+    //prog["mvp"] = objmvp;
+    //prog["lightDirection"] = lightPos;
     prog["light"] = light;
+    prog2["mv"] = mv;
+    prog2["mvp"] = mvp;
 }
 //Handle mouse motion while a button is NOT down
 void myMousePassive(int x, int y)
@@ -199,14 +213,14 @@ void myMousePassive(int x, int y)
 void myReshape(int width, int height)
 {
     //Do what you want when window size changes
-    glViewport(0, 0, width, height);
+    glViewport(1, 1, width, height);
 }
 
 void myIdle()
 {
-    int red = 0.0f;
+    int red = 0.3f;
     int green = 0.5f;
-    int blue = 0.5f;
+    int blue = 0.3f;
     int alpha = 1.0f;
     //handle animations here
     glClearColor(red, green, blue, alpha);
@@ -226,13 +240,18 @@ void initObject(char* file, bool load)
 //Compile the shaders
 void setshaders()
 {
+
     prog.BuildFiles("shader.vert", "shader.frag");
     prog.Bind();
-    prog["mv"] = mv;
+    prog["mv"] = objmv;
     prog["normalMatrix"] = NormMatrix;
-    prog["mvp"] = mvp;
+    prog["mvp"] = objmvp;
     prog["light"] = light;
     prog["lightPos"] = lightPos;
+    prog2.BuildFiles("vert2.vert", "frag2.frag");
+    prog2.Bind();
+    prog2["mv"] = mv;
+    prog2["mvp"] = mvp;
 }
 
 //Initialize MVP matrices
@@ -241,20 +260,22 @@ void initMatrices()
     //Model Matrix
     mesh.ComputeBoundingBox();
     ModelMatrix *= cy::Matrix4f::RotationX(DEG2RAD(-90));
-    //ModelMatrix.Scale(10.0f);
     //view Matrix
     viewMatrix.SetView(pos, cy::Vec3f(0.0f, 5.0f, 2.0f), cy::Vec3f(0.0f, 0.0f, 1.0f));
     //light
     light.SetView(lightPos, cy::Vec3f(0.0f, 0.0f, 0.0f), cy::Vec3f(0.0f, 0.0f, 0.0f));
     light = light.Scale(10.0f);
     //projection Matrix
-    projectionMatrix.SetPerspective(DEG2RAD(60.0f), float(window_width) / float(window_height), 0.1f, 1000.0f);
+    projectionMatrix.SetPerspective(DEG2RAD(60.0f), windowWidth / windowHeight, 0.1f, 1000.0f);
+    objmv = viewMatrix * ModelMatrix;
+    ModelMatrix.SetScale(10.0);
     mv = viewMatrix * ModelMatrix;
     //norm matrix, 3x3 inv-transpose of MV
     NormMatrix = mv.GetSubMatrix3();
     NormMatrix.Invert();
     NormMatrix.Transpose();
     mvp = projectionMatrix * viewMatrix * ModelMatrix;
+    objmvp = projectionMatrix * objmv;
 }
 
 void updateLight()
@@ -263,8 +284,8 @@ void updateLight()
     {
         if (mouseState == GLUT_DOWN) {
             if (mouseState == GLUT_LEFT_BUTTON) {
-                light *= cy::Matrix4f::RotationX((-Xcoord)*(M_PI / 360 * 0.05)*0.05);
-                light *= cy::Matrix4f::RotationY((-Ycoord)*(M_PI / 360 * 0.05)*0.05);
+                light += cy::Matrix4f::RotationX(((Ycoord) * M_PI) / 360 * 0.05);
+                light += cy::Matrix4f::RotationY(((Xcoord) * M_PI) / 360 * 0.05);
             }
         }
     }
@@ -274,17 +295,42 @@ void updateLight()
 
 void initPlane()
 {
+    static const GLfloat planeVert[] = { -0.5f,-0.5f,0.0f, 0.5f,-0.5f,0.0f, -0.5f,0.5f,0.0f, -0.5f,0.5f,0.0f, 0.5f,-0.5f,0.0f, 0.5f,0.5f,0.0f };
 
+    glGenVertexArrays(1, &planeVertexArray);
+    glBindVertexArray(planeVertexArray);
+
+    glGenBuffers(1, &planeVertexBuff);
+    glBindBuffer(GL_ARRAY_BUFFER, planeVertexBuff);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(planeVert), planeVert, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, planeVertexBuff);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+
+    glBindVertexArray(0);
+
+;
 }
-void initRenderBuffer()
+void initRenderBuffers()
 {
-
+    if (!renderText.Initialize(true, //create deoth buffer
+        3, //RGB
+        txtW, //texture width
+        txtH, //texture height
+        cyGL::TYPE_UBYTE))
+    {
+        printf("Problem initializing\n");
+    }
+    renderText.BuildTextureMipmaps();
+    //renderText.SetTextureFilteringMode(GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR);
+    //renderText.SetTextureAnisotropy(true);
 }
 
 void myDisplay()
 {
-    glClearColor(0.2f, 0.5f, 0.3f, 1.0f);
+    renderText.Bind();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(0.2f, 0.5f, 0.3f, 1.0f);
     glEnable(GL_LIGHTING);
     glEnable(GL_DEPTH_TEST);
     glUseProgram(prog.GetID());
@@ -299,7 +345,6 @@ void myDisplay()
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, textb1);
 
-
     glUniform1i(glGetUniformLocation(prog.GetID(), "texSpecular"), 1);
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, textb2);
@@ -308,6 +353,23 @@ void myDisplay()
     glBindBuffer(GL_ARRAY_BUFFER, nbuff);
     glBindBuffer(GL_ARRAY_BUFFER, tbuff);
     glDrawArrays(GL_TRIANGLES, 0, sizeof(cy::Vec3f) * mesh.NF());
+    //glutSwapBuffers();
+
+    renderText.Unbind();
+    renderText.Unbind();
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    //renderText.Unbind();
+    //glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    //glViewport(0, 0, windowWidth, windowHeight);
+    //render to plane
+    glUseProgram(prog2.GetID());
+    prog2.Bind();
+    //render to the texture
+    glUniform1i(glGetUniformLocation(prog2.GetID(), "text"), 0);
+    renderText.BindTexture(0);
+    glBindVertexArray(planeVertexArray);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    //renderText.Unbind();
     glutSwapBuffers();
 }
 
@@ -316,7 +378,7 @@ void initializeTextures()
     //diffuse material
     std::string text1(mesh.M(0).map_Kd);
     unsigned success = lodepng::decode(texture1, txtW, txtH, text1);
-    if (success == -1)
+    if (success == 1)
     {
         printf("Error loading texture\n");
     }
@@ -325,14 +387,14 @@ void initializeTextures()
     glBindTexture(GL_TEXTURE_2D, textb1);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, txtW, txtH, 0, GL_RGBA, GL_UNSIGNED_BYTE, &texture1[0]);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glGenerateMipmap(GL_TEXTURE_2D);
 
 
     //specular material
     std::string text2(mesh.M(0).map_Ks);
     success = lodepng::decode(texture2, txtW, txtH, text2);
-    if (success == -1)
+    if (success == 1)
     {
         printf("Error loading texture\n");
     }
@@ -341,7 +403,7 @@ void initializeTextures()
     glBindTexture(GL_TEXTURE_2D, textb2);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, txtW, txtH, 0, GL_RGBA, GL_UNSIGNED_BYTE, &texture2[0]);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glGenerateMipmap(GL_TEXTURE_2D);
 }
 //initialize Buffers
@@ -358,6 +420,7 @@ void initBuffers()
     glBufferData(GL_ARRAY_BUFFER, sizeof(cy::Vec3f) * mesh.NF() * 3, &vertices[0], GL_STATIC_DRAW);
     glBindBuffer(GL_ARRAY_BUFFER, buff);
     prog.SetAttribBuffer("pos", buff, 3);
+    prog2.SetAttribBuffer("pos", buff, 3);
 
     //Normals
     glGenBuffers(1, &nbuff);
@@ -372,6 +435,7 @@ void initBuffers()
     glBufferData(GL_ARRAY_BUFFER, sizeof(cy::Vec3f) * mesh.NF() * 3, &textureCoords[0], GL_STATIC_DRAW);
     glBindBuffer(GL_ARRAY_BUFFER, tbuff);
     prog.SetAttribBuffer("txc", tbuff, 3);
+    prog2.SetAttribBuffer("txc", tbuff, 3);
 
 
 }
@@ -446,14 +510,15 @@ int main(int argc, char** argv)
     initObject(argv[1],true);
     //create buffers
     initMatrices();
-    //initBuffers();
-    //create textures
     //Compile shaders
     setshaders();
+    //initialize buffers
     initBuffers();
+    //create textures
     initializeTextures();
-    initRenderBuffer();
     //Other initializations
+    initRenderBuffers();
+    initPlane();
     //call main loop
     glutMainLoop();
     //Exit when main loop is done
