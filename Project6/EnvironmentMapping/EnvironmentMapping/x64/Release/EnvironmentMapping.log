@@ -1,0 +1,72 @@
+﻿  main.cpp
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(687,54): warning C4334: '<<': result of 32-bit shift implicitly converted to 64 bits (was 64-bit shift intended?)
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(705,35): warning C4267: '=': conversion from 'size_t' to 'unsigned short', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(706,39): warning C4334: '<<': result of 32-bit shift implicitly converted to 64 bits (was 64-bit shift intended?)
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(730,37): warning C4267: '=': conversion from 'size_t' to 'unsigned short', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(747,38): warning C4267: '=': conversion from 'size_t' to 'unsigned short', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(3726,78): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(4729,33): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(4998,60): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(5003,83): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(5004,94): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(5005,83): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(5006,94): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(5007,83): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(5008,94): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(5009,78): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(5204,3): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(5228,7): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(5262,62): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(5279,3): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(5301,57): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(5332,57): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(5445,57): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(5559,33): warning C4334: '<<': result of 32-bit shift implicitly converted to 64 bits (was 64-bit shift intended?)
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(184,48): warning C4305: 'argument': truncation from 'double' to 'const T'
+          with
+          [
+              T=float
+          ]
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(185,48): warning C4305: 'argument': truncation from 'double' to 'const T'
+          with
+          [
+              T=float
+          ]
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(441,30): warning C4129: '.': unrecognized character escape sequence
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(441,30): warning C4129: 'I': unrecognized character escape sequence
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(441,30): warning C4129: 'c': unrecognized character escape sequence
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(442,30): warning C4129: '.': unrecognized character escape sequence
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(442,30): warning C4129: 'I': unrecognized character escape sequence
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(442,30): warning C4129: 'c': unrecognized character escape sequence
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(443,30): warning C4129: '.': unrecognized character escape sequence
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(443,30): warning C4129: 'I': unrecognized character escape sequence
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(443,30): warning C4129: 'c': unrecognized character escape sequence
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(444,30): warning C4129: '.': unrecognized character escape sequence
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(444,30): warning C4129: 'I': unrecognized character escape sequence
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(444,30): warning C4129: 'c': unrecognized character escape sequence
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(445,30): warning C4129: '.': unrecognized character escape sequence
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(445,30): warning C4129: 'I': unrecognized character escape sequence
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(445,30): warning C4129: 'c': unrecognized character escape sequence
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(446,30): warning C4129: '.': unrecognized character escape sequence
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(446,30): warning C4129: 'I': unrecognized character escape sequence
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(446,30): warning C4129: 'c': unrecognized character escape sequence
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(457,26): error C2374: 'success': redefinition; multiple initialization
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(453,26): message : see declaration of 'success'
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(461,26): error C2374: 'success': redefinition; multiple initialization
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(453,26): message : see declaration of 'success'
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(465,26): error C2374: 'success': redefinition; multiple initialization
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(453,26): message : see declaration of 'success'
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(469,26): error C2374: 'success': redefinition; multiple initialization
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(453,26): message : see declaration of 'success'
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(473,26): error C2374: 'success': redefinition; multiple initialization
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(453,26): message : see declaration of 'success'
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(456,13): error C2360: initialization of 'success' is skipped by 'case' label
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(453,26): message : see declaration of 'success'
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(460,13): error C2360: initialization of 'success' is skipped by 'case' label
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(457,26): message : see declaration of 'success'
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(464,13): error C2360: initialization of 'success' is skipped by 'case' label
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(461,26): message : see declaration of 'success'
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(468,13): error C2360: initialization of 'success' is skipped by 'case' label
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(465,26): message : see declaration of 'success'
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(472,13): error C2360: initialization of 'success' is skipped by 'case' label
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(469,26): message : see declaration of 'success'
