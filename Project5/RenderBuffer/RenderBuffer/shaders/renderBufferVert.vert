@@ -12,5 +12,5 @@ void main()
 {
 	gl_Position = mvp * vec4(pos, 1.0);
 	//texCoords = txc;
-	texCoords = vec2(txc + vec2(1,1))/2.0;
+	texCoords = vec2(txc + vec2(0.5,0.5));
 }

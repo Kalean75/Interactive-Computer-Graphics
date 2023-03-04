@@ -18,8 +18,6 @@
 //I had to put this to make it work...for some reason
 #pragma comment(lib, "glew32.lib")
 
-int DEG2RAD(int degrees);
-
 float windowWidth = 1920.0f;
 float windowHeight = 1080.0f;
 float Xcoord = 0;
@@ -32,7 +30,7 @@ int oldY;
 
 //Intial position of object
 cy::Vec3f pos = cy::Vec3f(0.0f, 0.0f, 50.0f);
-cy::Vec3f pos2 = cy::Vec3f(0.0f, 0.0f, 50.0f);
+cy::Vec3f pos2 = cy::Vec3f(0.0f, 0.0f, 40.0f);
 //light position
 cy::Vec3f lightPos = cy::Vec3f(100.0f, 0.0f, 50.0f);
 //vertex array and vertex buffer
@@ -42,7 +40,6 @@ GLuint nbuff;
 GLuint tbuff;
 GLuint textbuff1;
 GLuint textbuff2;
-GLuint frameBuffer = 0;
 GLuint planeVertexArray;
 GLuint planeVertexBuff;
 
@@ -78,8 +75,6 @@ cy::Matrix4f light = cy::Matrix4f::Identity();
 
 std::vector<unsigned char> texture1;
 std::vector<unsigned char> texture2;
-unsigned txtW = 600;
-unsigned txtH = 600; 
 int glutControl;
 //flag for ortho perspective
 bool perspective = false;
@@ -142,7 +137,8 @@ void myKeyboard2(int key, int x, int y)
             prog2.Bind();
             break;
     }
-    glutGetModifiers();
+    glutControl = glutGetModifiers();
+    glutPostRedisplay();
 }
 
 //Handles mouse input
@@ -155,49 +151,55 @@ void myMouse(int button, int state, int x, int y)
     mouseState = state;
     glutControl = glutGetModifiers();
     //rotate light
-    if (glutGetModifiers() == GLUT_ACTIVE_CTRL)
+    if (glutGetModifiers() == GLUT_ACTIVE_CTRL && state == GLUT_LEFT_BUTTON)
     {
-        if (state == GLUT_DOWN) {
-            if (state == GLUT_LEFT_BUTTON) 
-            {
-                light *= cy::Matrix4f::RotationX(((y - Ycoord) * M_PI) / 360 * 0.005);
-                light *= cy::Matrix4f::RotationY(((x - Xcoord) * M_PI) / 360 * 0.005);
-            }
-
-        }
+        light *= cy::Matrix4f::RotationX(((y - Ycoord) * M_PI) / 360 * 0.005);
+        light *= cy::Matrix4f::RotationY(((x - Xcoord) * M_PI) / 360 * 0.005);
     }
     prog["light"] = light;
     prog["lightPos"] = lightPos;
+    glutPostRedisplay();
 }
 //Handle mouse motion here while a button is down
 void myMouseMotion(int x, int y)
 {
     //right mouse button
-    if (mouseButton == GLUT_RIGHT_BUTTON)
+    if (mouseButton == GLUT_RIGHT_BUTTON && glutControl == GLUT_ACTIVE_ALT)
     {
-        viewMatrix.AddTranslation(pos * 0.0005 * (x - Xcoord));
-        viewMatrix.AddTranslation(pos * 0.0005 * (y - Ycoord));
+        viewMatrix.AddTranslation(cy::Vec3f(0.0f,0.0f,1.0f)  * 0.05f *(x - Xcoord));
+        viewMatrix.AddTranslation(cy::Vec3f(0.0f, 0.0f, 1.0f) *0.05f* (y - Ycoord));
     }
-    //left mouse button
     if (mouseButton == GLUT_LEFT_BUTTON && glutControl == GLUT_ACTIVE_CTRL)
     {
         light *= cy::Matrix4f::RotationX(((y - Ycoord) * M_PI) / 360 * 0.005);
         light *= cy::Matrix4f::RotationY(((x - Xcoord) * M_PI) / 360 * 0.005);
     }
-    else
+    if (mouseButton == GLUT_LEFT_BUTTON && glutControl == GLUT_ACTIVE_ALT)
     {
         viewMatrix *= cy::Matrix4f::RotationX(((y - Ycoord) * M_PI) / 360 * 0.08);
         viewMatrix *= cy::Matrix4f::RotationY(((x - Xcoord) * M_PI) / 360 * 0.08);
+    }
+    if (mouseButton == GLUT_LEFT_BUTTON && glutControl != GLUT_ACTIVE_ALT && glutControl != GLUT_ACTIVE_CTRL)
+    {
+        viewMatrix2 *= cy::Matrix4f::RotationX(((y - Ycoord) * M_PI) / 360 * 0.08);
+        viewMatrix2 *= cy::Matrix4f::RotationY(((x - Xcoord) * M_PI) / 360 * 0.08);
+    }
+    if (mouseButton == GLUT_RIGHT_BUTTON && glutControl != GLUT_ACTIVE_ALT && glutControl != GLUT_ACTIVE_CTRL)
+    {
+        viewMatrix2.AddTranslation(cy::Vec3f(0.0f, 0.0f, 1.0f) *0.05f * (x - Xcoord));
+        viewMatrix2.AddTranslation(cy::Vec3f(0.0f, 0.0f, 1.0f) * 0.05f * (y - Ycoord));
     }
     int oldX = Xcoord;
     int oldY = Ycoord;
     Xcoord = x;
     Ycoord = y;
     mv = viewMatrix * ModelMatrix;
+    objmv = viewMatrix2 * ModelMatrix2;
     NormMatrix = mv.GetSubMatrix3();
     NormMatrix.Invert();
     NormMatrix.Transpose();
 
+    objmvp = projectionMatrix2 * objmv;
     mvp = projectionMatrix * viewMatrix * ModelMatrix;
     prog["mv"] = objmv;
     prog["normalMatrix"] = NormMatrix;
@@ -206,6 +208,7 @@ void myMouseMotion(int x, int y)
     prog["light"] = light;
     prog2["mv"] = mv;
     prog2["mvp"] = mvp;
+    glutPostRedisplay();
 }
 //Handle mouse motion while a button is NOT down
 void myMousePassive(int x, int y)
@@ -257,7 +260,7 @@ void initMatrices()
 
     //view Matrix
     //plane
-    viewMatrix.SetView(pos, cy::Vec3f(0.0f, 5.0f, 2.0f), cy::Vec3f(0.0f, 0.0f, 1.0f));
+    viewMatrix.SetView(pos, cy::Vec3f(0.0f, 0.0f, 0.0f), cy::Vec3f(0.0f, 1.0f, 0.0f));
     //teapot
     viewMatrix2.SetView(pos2, cy::Vec3f(0.0f, 5.0f, 2.0f), cy::Vec3f(0.0f, 0.0f, 1.0f));;
     //viewMatrix.SetTranslation(cy::Vec3f(0.0f, 0.0f, 0.0f));
@@ -271,12 +274,8 @@ void initMatrices()
     //plane
     projectionMatrix.SetPerspective(DEG2RAD(60.0f), windowWidth / windowHeight, 0.1f, 1000.0f);
     //teapot
-    projectionMatrix2.SetPerspective(DEG2RAD(60.0f), windowWidth / windowHeight, 0.1f, 1000.0f);
-    
-    projectionMatrix2.OrthogonalizeX();
-    projectionMatrix2.OrthogonalizeY();
-    projectionMatrix2.OrthogonalizeZ();
-    
+    projectionMatrix2.SetPerspective(DEG2RAD(60.0f), 1.0f, 0.1f, 1000.0f);
+
     //mv matrix
     //teapot
     objmv = viewMatrix2 * ModelMatrix2;
@@ -327,7 +326,6 @@ void initBuffers()
     glGenBuffers(1, &buff);
     glBindBuffer(GL_ARRAY_BUFFER, buff);
     glBufferData(GL_ARRAY_BUFFER, sizeof(cy::Vec3f) * mesh.NF() * 3, &vertices[0], GL_STATIC_DRAW);
-    glBindBuffer(GL_ARRAY_BUFFER, buff);
     prog.SetAttribBuffer("pos", buff, 3);
     //prog2.SetAttribBuffer("pos", buff, 3);
 
@@ -335,19 +333,18 @@ void initBuffers()
     glGenBuffers(1, &nbuff);
     glBindBuffer(GL_ARRAY_BUFFER, nbuff);
     glBufferData(GL_ARRAY_BUFFER, sizeof(cy::Vec3f) * mesh.NF() * 3, &Normals[0], GL_STATIC_DRAW);
-    glBindBuffer(GL_ARRAY_BUFFER, nbuff);
     prog.SetAttribBuffer("norms", nbuff, 3);
 
     //Textures
     glGenBuffers(1, &tbuff);
     glBindBuffer(GL_ARRAY_BUFFER, tbuff);
     glBufferData(GL_ARRAY_BUFFER, sizeof(cy::Vec3f) * mesh.NF() * 3, &textureCoords[0], GL_STATIC_DRAW);
-    glBindBuffer(GL_ARRAY_BUFFER, tbuff);
     prog.SetAttribBuffer("txc", tbuff, 3);
 }
 void initializeTextures()
 {
     //diffuse material
+    unsigned txtW,txtH;
     std::string text1(mesh.M(0).map_Kd);
     unsigned success = lodepng::decode(texture1, txtW, txtH, text1);
     if (success == 1)
@@ -361,7 +358,6 @@ void initializeTextures()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glGenerateMipmap(GL_TEXTURE_2D);
     glUniform1i(glGetUniformLocation(prog.GetID(), "texKd"), 0);
-
 
     //specular material
     std::string text2(mesh.M(0).map_Ks);
@@ -381,16 +377,10 @@ void initializeTextures()
 
 void updateLight()
 {
-    if (glutControl == GLUT_ACTIVE_CTRL)
+    if (glutControl == GLUT_ACTIVE_CTRL && mouseState == GLUT_LEFT_BUTTON)
     {
-        if (mouseState == GLUT_DOWN) 
-        {
-            if (mouseState == GLUT_LEFT_BUTTON) 
-            {
-                light *= cy::Matrix4f::RotationX((-(oldY - Ycoord) * M_PI) / 360 * 0.001);
-                light *= cy::Matrix4f::RotationY((-(oldX - Xcoord) * M_PI) / 360 * 0.001);
-            }
-        }
+        light *= cy::Matrix4f::RotationX((-(oldY - Ycoord) * M_PI) / 360 * 0.001);
+        light *= cy::Matrix4f::RotationY((-(oldX - Xcoord) * M_PI) / 360 * 0.001);
     }
     prog["light"] = light;
     prog["lightPos"] = lightPos;
@@ -436,10 +426,7 @@ void myDisplay()
     glEnable(GL_DEPTH_TEST);
     glUseProgram(prog.GetID());
 
-    if (glutControl == GLUT_ACTIVE_CTRL)
-    {
-       updateLight();
-    }
+    updateLight();
 
     //Teapot
     prog.Bind();

@@ -22,19 +22,9 @@ C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project5\Rende
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project5\RenderBuffer\include\lodepng\lodepng.cpp(5332,57): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project5\RenderBuffer\include\lodepng\lodepng.cpp(5445,57): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project5\RenderBuffer\include\lodepng\lodepng.cpp(5559,33): warning C4334: '<<': result of 32-bit shift implicitly converted to 64 bits (was 64-bit shift intended?)
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project5\RenderBuffer\RenderBuffer\main.cpp(177,48): warning C4305: 'argument': truncation from 'double' to 'const T'
-          with
-          [
-              T=float
-          ]
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project5\RenderBuffer\RenderBuffer\main.cpp(178,48): warning C4305: 'argument': truncation from 'double' to 'const T'
-          with
-          [
-              T=float
-          ]
   Generating code
-  1 of 1005 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  10 of 1007 functions ( 1.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    4 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   RenderBuffer.vcxproj -> C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project5\RenderBuffer\x64\Release\RenderBuffer.exe

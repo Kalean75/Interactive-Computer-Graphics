@@ -20,7 +20,7 @@ out vec2 texCoords;
 void main()
 {
 	texCoords=txc;
-	lightDirection = vec3(light)*lightPos;
+	lightDirection = vec3(light * vec4(lightPos,1.0));
 	vec4 vertPos4 = mv * vec4(pos, 1.0);
 	viewPos = vec3(vertPos4)/ vertPos4.w;
 	normalPos = vec3(normalMatrix * norms);

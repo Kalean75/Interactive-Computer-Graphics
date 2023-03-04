@@ -22,68 +22,9 @@ C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\Envir
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(5332,57): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(5445,57): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\include\lodepng\lodepng.cpp(5559,33): warning C4334: '<<': result of 32-bit shift implicitly converted to 64 bits (was 64-bit shift intended?)
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(184,48): warning C4305: 'argument': truncation from 'double' to 'const T'
-          with
-          [
-              T=float
-          ]
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(185,48): warning C4305: 'argument': truncation from 'double' to 'const T'
-          with
-          [
-              T=float
-          ]
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(441,30): warning C4129: '.': unrecognized character escape sequence
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(441,30): warning C4129: 'i': unrecognized character escape sequence
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(441,30): warning C4129: 'c': unrecognized character escape sequence
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(442,30): warning C4129: '.': unrecognized character escape sequence
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(442,30): warning C4129: 'i': unrecognized character escape sequence
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(442,30): warning C4129: 'c': unrecognized character escape sequence
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(443,30): warning C4129: '.': unrecognized character escape sequence
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(443,30): warning C4129: 'i': unrecognized character escape sequence
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(443,30): warning C4129: 'c': unrecognized character escape sequence
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(444,30): warning C4129: '.': unrecognized character escape sequence
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(444,30): warning C4129: 'i': unrecognized character escape sequence
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(444,30): warning C4129: 'c': unrecognized character escape sequence
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(445,30): warning C4129: '.': unrecognized character escape sequence
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(445,30): warning C4129: 'i': unrecognized character escape sequence
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(445,30): warning C4129: 'c': unrecognized character escape sequence
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(446,30): warning C4129: '.': unrecognized character escape sequence
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(446,30): warning C4129: 'i': unrecognized character escape sequence
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(446,30): warning C4129: 'c': unrecognized character escape sequence
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xmemory(783,20): error C2338: static_assert failed: 'The C++ Standard forbids containers of const elements because allocator<const T> is ill-formed.'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xmemory(610,1): message : see reference to class template instantiation 'std::allocator<const char>' being compiled
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xmemory(704,1): message : see reference to class template instantiation 'std::_Default_allocator_traits<_Alloc>' being compiled
-          with
-          [
-              _Alloc=std::allocator<const char>
-          ]
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\vector(500,50): message : see reference to class template instantiation 'std::allocator_traits<_Alloc>' being compiled
-          with
-          [
-              _Alloc=std::allocator<const char>
-          ]
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\vector(500,26): message : see reference to alias template instantiation 'std::_Rebind_alloc_t<_Alloc,_Ty>' being compiled
-          with
-          [
-              _Alloc=std::allocator<const char>,
-              _Ty=const char
-          ]
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(452,37): message : see reference to class template instantiation 'std::vector<const char,std::allocator<const char>>' being compiled
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xmemory(814,66): error C2535: '_Ty *std::allocator<_Ty>::address(_Ty &) noexcept const': member function already defined or declared
-          with
-          [
-              _Ty=const char
-          ]
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xmemory(810,60): message : see declaration of 'std::allocator<const char>::address'
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(453,13): error C2360: initialization of 'cubeT1' is skipped by 'case' label
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(452,37): message : see declaration of 'cubeT1'
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(458,13): error C2360: initialization of 'cubeT1' is skipped by 'case' label
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(452,37): message : see declaration of 'cubeT1'
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(463,13): error C2360: initialization of 'cubeT1' is skipped by 'case' label
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(452,37): message : see declaration of 'cubeT1'
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(467,13): error C2360: initialization of 'cubeT1' is skipped by 'case' label
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(452,37): message : see declaration of 'cubeT1'
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(472,13): error C2360: initialization of 'cubeT1' is skipped by 'case' label
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(452,37): message : see declaration of 'cubeT1'
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(477,13): error C2360: initialization of 'cubeT1' is skipped by 'case' label
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(452,37): message : see declaration of 'cubeT1'
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(491,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(535,56): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(582,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(589,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\EnvironmentMapping\main.cpp(596,23): warning C4018: '<': signed/unsigned mismatch
+  EnvironmentMapping.vcxproj -> C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project6\EnvironmentMapping\x64\Debug\EnvironmentMapping.exe
