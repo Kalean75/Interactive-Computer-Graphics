@@ -29,7 +29,7 @@ int oldY;
 
 
 //Intial position of object
-cy::Vec3f pos = cy::Vec3f(0.0f, 0.0f, 10.0f);
+cy::Vec3f pos = cy::Vec3f(0.0f, 0.0f, 40.0f);
 cy::Vec3f pos2 = cy::Vec3f(0.0f, 0.0f, 50.0f);
 cy::Vec3f pos3 = cy::Vec3f(0.0f, 0.0f, 10.0f);
 //light position
@@ -211,10 +211,10 @@ void myMouseMotion(int x, int y)
     }
     if (mouseButton == GLUT_LEFT_BUTTON && glutControl != GLUT_ACTIVE_ALT && glutControl != GLUT_ACTIVE_CTRL)
     {
-        cubeViewMatrix *= cy::Matrix4f::RotationX(((y - Ycoord) * M_PI) / 360 * 0.08);
+        //cubeViewMatrix *= cy::Matrix4f::RotationX(((y - Ycoord) * M_PI) / 360 * 0.08);
         cubeViewMatrix *= cy::Matrix4f::RotationY(((x - Xcoord) * M_PI) / 360 * 0.08);
         //potViewMatrix *= cy::Matrix4f::RotationX(((y - Ycoord) * M_PI) / 360 * 0.08);
-        //potViewMatrix *= cy::Matrix4f::RotationY(((x - Xcoord) * M_PI) / 360 * 0.08);
+        potViewMatrix *= cy::Matrix4f::RotationY(((x - Xcoord) * M_PI) / 360 * 0.08);
     }
    if (mouseButton == GLUT_RIGHT_BUTTON && glutControl != GLUT_ACTIVE_ALT && glutControl != GLUT_ACTIVE_CTRL)
     {
@@ -356,7 +356,7 @@ void initMatrices()
 void setshaders()
 {
     //prog1
-    prog.BuildFiles("shaders/shader.vert", "shaders/shader.frag");
+    prog.BuildFiles("shaders/refVert.vert", "shaders/refFrag.frag");
     prog.Bind();
     prog["mv"] = objmv;
     prog["normalMatrix"] = NormMatrix;
@@ -398,12 +398,12 @@ void initBuffers()
     prog.SetAttribBuffer("norms", nbuff, 3);
 
     //Textures
-    glGenBuffers(1, &tbuff);
-    glBindBuffer(GL_ARRAY_BUFFER, tbuff);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(cy::Vec3f) * mesh.NF() * 3, &textureCoords[0], GL_STATIC_DRAW);
-    prog.SetAttribBuffer("txc", tbuff, 3);
+    //glGenBuffers(1, &tbuff);
+    //glBindBuffer(GL_ARRAY_BUFFER, tbuff);
+    //glBufferData(GL_ARRAY_BUFFER, sizeof(cy::Vec3f) * mesh.NF() * 3, &textureCoords[0], GL_STATIC_DRAW);
+    //prog.SetAttribBuffer("txc", tbuff, 3);
 }
-void initializeTextures()
+/*void initializeTextures()
 {
     unsigned success;
     unsigned txtW, txtH;
@@ -442,7 +442,7 @@ void initializeTextures()
         glGenerateMipmap(GL_TEXTURE_2D);
         glUniform1i(glGetUniformLocation(prog.GetID(), "texKs"), 0);
     }
-}
+}*/
 
 void updateLight()
 {
@@ -522,11 +522,11 @@ void initCube()
         //load image from file
         lodepng::decode(cubeTexture, envW, envH, cubeTextureImg[i]);
         envmap.SetImageRGBA((cy::GLTextureCubeMap::Side) i, &cubeTexture[0], envW, envH);
-        //set image data
-        envmap.BuildMipmaps();
-        envmap.SetSeamless();
-        envmap.Bind(0);
     }
+    //set image data
+    envmap.BuildMipmaps();
+    envmap.SetSeamless();
+    envmap.Bind(0);
 }
 
 void myDisplay()
@@ -544,7 +544,7 @@ void myDisplay()
     glDrawArrays(GL_TRIANGLES, 0, cubeVertCoords.size());
     glDepthMask(GL_TRUE);
     
-    glEnable(GL_LIGHTING);
+   // glEnable(GL_LIGHTING);
     glEnable(GL_DEPTH_TEST);
     
     glUseProgram(prog.GetID());
@@ -555,17 +555,17 @@ void myDisplay()
     glGenVertexArrays(1, &vertexArray);
     glBindVertexArray(buff);
 
-    glActiveTexture(GL_TEXTURE0);
+    /**glActiveTexture(GL_TEXTURE0);
     glUniform1i(glGetUniformLocation(prog.GetID(), "texKd"), 0);
     glBindTexture(GL_TEXTURE_2D, textbuff1);
 
     glActiveTexture(GL_TEXTURE1);
     glUniform1i(glGetUniformLocation(prog.GetID(), "texKs"), 0);
-    glBindTexture(GL_TEXTURE_2D, textbuff2);
+    glBindTexture(GL_TEXTURE_2D, textbuff2);*/
 
     glBindBuffer(GL_ARRAY_BUFFER, buff);
     glBindBuffer(GL_ARRAY_BUFFER, nbuff);
-    glBindBuffer(GL_ARRAY_BUFFER, tbuff);
+    //glBindBuffer(GL_ARRAY_BUFFER, tbuff);
     glDrawArrays(GL_TRIANGLES, 0, (sizeof(cy::Vec3f) * mesh.NF()));
 
     //renderText.Unbind();
@@ -581,7 +581,7 @@ void myDisplay()
     //glUniform1i(glGetUniformLocation(prog2.GetID(), "text"), 0);
     //renderText.BindTexture(0);
     //glBindVertexArray(planeVertexArray);
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    //glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
     glutSwapBuffers();
 }

@@ -2,7 +2,6 @@
 
 layout (location = 0) in vec3 pos;
 layout (location = 1) in vec3 norms;
-layout (location = 2) in vec2 txc;
 
 uniform mat4 mvp;
 uniform mat4 mv;
@@ -13,13 +12,11 @@ uniform vec3 lightPos;
 
 out vec3 viewPos;
 out vec3 normalPos;
-out vec3 lightDirection;
-out vec2 texCoords;		
+out vec3 lightDirection;	
 
 
 void main()
 {
-	texCoords=txc;
 	lightDirection = vec3(light * vec4(lightPos,1.0));
 	vec4 vertPos4 = mv * vec4(pos, 1.0);
 	viewPos = vec3(vertPos4)/ vertPos4.w;
