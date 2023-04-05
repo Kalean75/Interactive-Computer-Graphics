@@ -5,32 +5,36 @@ in vec3 normalPos;
 in vec3 viewPos;
 in vec3 lightDirection;
 in vec2 texCoords;
+in vec4 lightView_Position;
 
-uniform sampler2D texKd;
-uniform sampler2D texKs;
+//uniform sampler2D texKd;
+//uniform sampler2D texKs;
+uniform sampler2D shadow;
 
 out vec4 color;
 
 void main()
 {
-	//vec4 Ks = vec4(1.0,1.0,1.0,1.0);
-	//vec4 Ks = vec4(1.0,1.0,1.0,1.0);
-	float shininess = 2.0;
+	vec4 Kd = vec4(0.5,0.5,0.5,1.0);
+	vec4 Ks = vec4(1.0,1.0,1.0,1.0);
+	float shininess = 100.0;
 	vec3 v = -normalize(viewPos);
 	vec3 n = normalize(normalPos);
 	vec3 l = normalize(lightDirection);
 	vec3 h = normalize(l + v);
 
-	vec4 Ks = vec4(texture2D(texKs, texCoords));
+	//vec4 Ks = vec4(texture2D(texKs, texCoords));
 	vec4 I = vec4(1.0,1.0,1.0,1.0);
 	float theta = max(dot(l,n), 0.0);
 	float phi = pow(max(dot(n,h),0.0), shininess);
 
-	vec4 Kd = vec4(texture2D(texKd, texCoords));
+	//vec4 Kd = vec4(texture2D(texKd, texCoords));
 
 	vec4 ambient = vec4(vec3(0.25,0.25,0.25) * Ks.rgb,1.0);
 	vec4 specular = vec4(Ks.rgb* phi,1.0);
 	
 	color = I * (Kd*theta+specular) + ambient;
-	//color = vec4(normalPos, 1.0f);
+	vec3 p = lightView_Position.xyz/lightView_Position.w;
+
+	color *= texture(shadow,p.xy).r < p.z ? 0 : 1;
 } 

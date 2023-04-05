@@ -3,7 +3,7 @@ void setMesh();
 void initObject(char* file, bool load);
 void initMatrices();
 void initPlane();
-void initRenderBuffers();
+//void initRenderBuffers();
 void updateLight();
 void initializeTextures();
 void initBuffers();

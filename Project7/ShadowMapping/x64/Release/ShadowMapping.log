@@ -22,11 +22,21 @@ C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\inclu
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\include\lodepng\lodepng.cpp(5332,57): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\include\lodepng\lodepng.cpp(5445,57): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\include\lodepng\lodepng.cpp(5559,33): warning C4334: '<<': result of 32-bit shift implicitly converted to 64 bits (was 64-bit shift intended?)
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\ShadowMapping\main.cpp(522,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\ShadowMapping\main.cpp(529,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\ShadowMapping\main.cpp(536,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\ShadowMapping\main.cpp(241,78): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\ShadowMapping\main.cpp(349,78): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\ShadowMapping\main.cpp(610,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\ShadowMapping\main.cpp(617,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\ShadowMapping\main.cpp(624,23): warning C4018: '<': signed/unsigned mismatch
   Generating code
-  3 of 974 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  56 of 1024 functions ( 5.5%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     3 functions had inline decision re-evaluated but remain unchanged
   Finished generating code

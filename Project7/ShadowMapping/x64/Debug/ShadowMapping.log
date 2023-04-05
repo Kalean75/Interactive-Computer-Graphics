@@ -22,7 +22,17 @@ C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\inclu
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\include\lodepng\lodepng.cpp(5332,57): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\include\lodepng\lodepng.cpp(5445,57): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\include\lodepng\lodepng.cpp(5559,33): warning C4334: '<<': result of 32-bit shift implicitly converted to 64 bits (was 64-bit shift intended?)
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\ShadowMapping\main.cpp(504,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\ShadowMapping\main.cpp(511,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\ShadowMapping\main.cpp(518,23): warning C4018: '<': signed/unsigned mismatch
-LINK : fatal error LNK1104: cannot open file 'freeglutd.lib'
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\ShadowMapping\main.cpp(241,78): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\ShadowMapping\main.cpp(349,78): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\ShadowMapping\main.cpp(610,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\ShadowMapping\main.cpp(617,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\ShadowMapping\main.cpp(624,23): warning C4018: '<': signed/unsigned mismatch
+  ShadowMapping.vcxproj -> C:\Users\white_dr7tr0e\source\repos\Interactive-Computer-Graphics\Project7\x64\Debug\ShadowMapping.exe
