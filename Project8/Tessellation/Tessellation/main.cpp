@@ -26,6 +26,7 @@ int mouseButton;
 int mouseState;
 int oldX;
 int oldY;
+float tessLevel = 0;
 
 bool showtriangulation = true;
 
@@ -42,6 +43,7 @@ GLuint tvao;
 GLuint tvbo;
 GLuint textCoords;
 GLuint textNormals;
+GLuint dispMapID;
 
 std::vector<cy::Vec3f> planeCoords;
 std::vector<cy::Vec2f> quadTextureCoords;
@@ -66,6 +68,7 @@ std::vector<unsigned char> texture;
 int glutControl;
 //flag for ortho perspective
 bool perspective = false;
+bool twoArgs = false;
 //converts degrees to radians
 int DEG2RAD(int degrees)
 {
@@ -130,7 +133,18 @@ void myKeyboard2(int key, int x, int y)
         //F6
     case GLUT_KEY_F6:
         break;
+    case GLUT_KEY_LEFT:
+        tessLevel += 0.5;
+        break;
+    case GLUT_KEY_RIGHT:
+        if (tessLevel > 0)
+        {
+            tessLevel -= 0.5;
+        }
+        break;
     }
+    prog["tessellationLevel"] = tessLevel;
+    triangulationProg["tessellationLevel"] = tessLevel;
     glutControl = glutGetModifiers();
     glutPostRedisplay();
 }
@@ -263,9 +277,8 @@ void initMatrices()
 void setshaders()
 {
     //prog1
-    //prog.BuildFiles("shaders/vertexShader.vert", "shaders/fragmentShader.frag", "shaders/geometryShader.geom", "shaders/tesscon.tesc", "shaders/tessev.tese");
     //prog.BuildFiles("shaders/vertexShader.vert", "shaders/fragmentShader.frag");
-    prog.BuildFiles("shaders/vertexShader.vert", "shaders/fragmentShader.frag");
+    prog.BuildFiles("shaders/vertexShader.vert", "shaders/fragmentShader.frag", NULL, "shaders/tesscon.tesc", "shaders/tessev.tese");
     prog.Bind();
     prog["mv"] = mv;
     prog["normalMatrix"] = NormMatrix;
@@ -273,9 +286,19 @@ void setshaders()
     prog["light"] = light;
     prog["lightPos"] = lightPos;
 
-    triangulationProg.BuildFiles("shaders/vertexShader2.vert", "shaders/fragmentShader2.frag", "shaders/geometryShader.geom");
-    triangulationProg.Bind();
-    triangulationProg["mvp"] = mvp;
+    if (!twoArgs)
+    {
+        triangulationProg.BuildFiles("shaders/vertexShader2.vert", "shaders/fragmentShader2.frag", "shaders/geometryShader.geom");
+        triangulationProg.Bind();
+        triangulationProg["mvp"] = mvp;
+    }
+    else
+    {
+        prog["hasDisplacement"] = true;
+        triangulationProg.BuildFiles("shaders/vertexShader2.vert", "shaders/fragmentShader2.frag", "shaders/geometryShader.geom", "shaders/tesscon2.tesc", "shaders/tessev2.tese");
+        triangulationProg.Bind();
+        triangulationProg["mvp"] = mvp;
+    }
 
 }
 
@@ -312,6 +335,7 @@ void initBuffers()
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     prog.SetAttribBuffer("pos", vbo, 3);
+    triangulationProg.SetAttribBuffer("pos", vbo, 3);
 
     glGenBuffers(1, &textCoords);
     glBindBuffer(GL_ARRAY_BUFFER, textCoords);
@@ -327,7 +351,7 @@ void initBuffers()
     glBindBuffer(GL_ARRAY_BUFFER, textNormals);
     prog.SetAttribBuffer("norms", textNormals, 3);
 
-    glUseProgram(triangulationProg.GetID());
+    /**glUseProgram(triangulationProg.GetID());
     glGenVertexArrays(1, &tvao);
     glBindVertexArray(tvao);
     glGenBuffers(1, &tvbo);
@@ -335,14 +359,14 @@ void initBuffers()
     glBufferData(GL_ARRAY_BUFFER, sizeof(cy::Vec3f) * 4, &planeCoords[0], GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, tvbo);
-    triangulationProg.SetAttribBuffer("pos", tvbo, 3);
+    triangulationProg.SetAttribBuffer("pos", tvbo, 3);*/
 }
 void initializeTextures(std::string normName)
 {
     //diffuse material
     unsigned txtW, txtH;
     unsigned success = lodepng::decode(texture, txtW, txtH, normName);
-    if (success == 1)
+    if (success > 0)
     {
         printf("Error loading texture\n");
     }
@@ -355,6 +379,27 @@ void initializeTextures(std::string normName)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glGenerateMipmap(GL_TEXTURE_2D);
     glUniform1i(glGetUniformLocation(prog.GetID(), "normalMap"), 0);
+
+    if (twoArgs)
+    {
+        unsigned txtW, txtH;
+        unsigned success = lodepng::decode(texture, txtW, txtH, normName);
+        if (success == 1)
+        {
+            printf("Error loading texture\n");
+        }
+
+        glUseProgram(prog.GetID());
+        glGenTextures(1, &dispMapID);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, dispMapID);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, txtW, txtH, 0, GL_RGBA, GL_UNSIGNED_BYTE, &texture[0]);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glGenerateMipmap(GL_TEXTURE_2D);
+        glUniform1i(glGetUniformLocation(prog.GetID(), "dispMap"), 1);
+    }
+
+    glPatchParameteri(GL_PATCH_VERTICES, 4);
 
 }
 
@@ -381,16 +426,32 @@ void myDisplay()
     prog.Bind();
     glBindVertexArray(vao);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    //glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    glDrawArrays(GL_PATCHES, 0, 4);
 
-    //triangulation lines
-    if (showtriangulation)
+    if (!twoArgs)
     {
-        glUseProgram(triangulationProg.GetID());
-        triangulationProg.Bind();
-        glBindVertexArray(tvao);
-        glBindBuffer(GL_ARRAY_BUFFER, tvbo);
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        //triangulation lines
+        if (showtriangulation)
+        {
+            glUseProgram(triangulationProg.GetID());
+            triangulationProg.Bind();
+            glBindVertexArray(vao);
+            glBindBuffer(GL_ARRAY_BUFFER, vbo);
+            glDrawArrays(GL_PATCHES, 0, 4);
+        }
+    }
+    else
+    {
+        //triangulation lines
+        if (showtriangulation)
+        {
+            glUseProgram(triangulationProg.GetID());
+            triangulationProg.Bind();
+            glBindVertexArray(vao);
+            glBindBuffer(GL_ARRAY_BUFFER, vbo);
+            glDrawArrays(GL_PATCHES, 0, 4);
+        }
     }
     glutSwapBuffers();
 }
@@ -434,6 +495,10 @@ void initGlut(int argc, char** argv)
 
 int main(int argc, char** argv)
 {
+    if (argc > 2)
+    {
+        twoArgs = true;
+    }
     //GLUT initializations
     initGlut(argc, argv);
     //initialize object

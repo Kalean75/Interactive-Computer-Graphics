@@ -2,7 +2,6 @@
 
 layout (triangles, invocations = 1) in;
 layout(line_strip,max_vertices=4) out;
-//layout(triangle_strip,max_vertices=4) out;
 
 void main()
 {

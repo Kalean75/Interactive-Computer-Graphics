@@ -8,12 +8,14 @@ uniform mat4 mv;
 uniform mat4 light;
 uniform mat3 normalMatrix;
 uniform vec3 lightPos;
+uniform bool hasDisplacement;
 
- out vec2 texCoords;
- out vec3 normCoords;
- out vec3 viewPos;
- out vec3 lightDirection;
- out mat3 matrixNormal;
+out vec2 texCoords;
+out vec3 normCoords;
+out vec3 viewPos;
+out vec3 lightDirection;
+out mat3 matrixNormal;
+out mat4 mvpout;
 
 void main()
 {
@@ -23,7 +25,8 @@ void main()
 	//viewPos = normalize(-vec3(mv*vec4(pos,1)));
 	vec4 vertPos4 = mv * vec4(pos, 1.0);
 	viewPos = vec3(vertPos4)/ vertPos4.w;
+	matrixNormal = normalMatrix;
+	mvpout = mvp;
 	gl_Position = mvp * vec4(pos, 1.0);
 
-	matrixNormal = normalMatrix;
 }
