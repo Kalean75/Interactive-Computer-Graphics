@@ -23,8 +23,8 @@ C:\Users\White\source\repos\Interactive-Computer-Graphics\Project8\Tessellation\
 C:\Users\White\source\repos\Interactive-Computer-Graphics\Project8\Tessellation\include\lodepng\lodepng.cpp(5445,57): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\White\source\repos\Interactive-Computer-Graphics\Project8\Tessellation\include\lodepng\lodepng.cpp(5559,33): warning C4334: '<<': result of 32-bit shift implicitly converted to 64 bits (was 64-bit shift intended?)
   Generating code
-  3 of 712 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+  0 of 712 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    6 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Tessellation.vcxproj -> C:\Users\White\source\repos\Interactive-Computer-Graphics\Project8\Tessellation\x64\Release\Tessellation.exe

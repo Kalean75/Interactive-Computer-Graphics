@@ -31,17 +31,6 @@ void main()
 	float u = gl_TessCoord.x;
 	float v = gl_TessCoord.y;
 
-	vec4 pos0 = gl_in[0].gl_Position;
-	vec4 pos1 = gl_in[1].gl_Position;
-	vec4 pos2 = gl_in[2].gl_Position;
-	vec4 pos3 = gl_in[3].gl_Position;
-	vec4 displacement = vec4(outnormCoords[0] * (texture2D(dispMap,outtexCoords[0]).r), 0.0);
-
-	vec4 leftPos = pos1 + v * (pos3-pos1);
-	vec4 rightPos = pos0 + v * (pos2 - pos0);
-	vec4 pos = leftPos + u * (rightPos - leftPos);
-	gl_Position = pos;
-
 	vec2 txc0 = outtexCoords[0];
 	vec2 txc1 = outtexCoords[1];
 	vec2 txc2 = outtexCoords[2];
@@ -50,6 +39,7 @@ void main()
 	vec2 leftTxc = txc1 + v * (txc3-txc1);
 	vec2 rightTxc = txc0 + v * (txc2 - txc0);
 	vec2 txc = leftTxc + u * (rightTxc - leftTxc);
+
 
 	//viewPos
 	vec3 vp0 = outviewPos[0];
@@ -70,6 +60,37 @@ void main()
 	vec3 leftnc = nc1 + v * (nc3-nc1);
 	vec3 rightnc = nc0 + v * (nc2 - nc0);
 	vec3 nc = leftnc + u * (rightnc - leftnc);
+
+	nc = normalize(nc);
+
+	mat4 mvp0 = mvpin[0];
+	mat4 mvp1 = mvpin[1];
+	mat4 mvp2 = mvpin[2];
+	mat4 mvp3 = mvpin[3];
+
+	mat4 leftmvp = mvp1 + v * (mvp3-mvp1);
+	mat4 rightmvp = mvp0 + v * (mvp2 - mvp0);
+	mat4 mvpmat2 = leftmvp + u * (rightmvp - leftmvp);
+
+	//vec4 displacement = vec4(nc * (texture(dispMap,txc).xyz*2.0-1.0).r, 0.0);
+	vec4 displacement = vec4(nc * (texture(dispMap,txc)).r, 0.0);
+	
+	vec4 pos0 = gl_in[0].gl_Position + (displacement * inTessLev[0]);
+	vec4 pos1 = gl_in[1].gl_Position + (displacement * inTessLev[1]);
+	vec4 pos2 = gl_in[2].gl_Position + (displacement * inTessLev[2]);
+	vec4 pos3 = gl_in[3].gl_Position+ (displacement * inTessLev[3]);
+
+	/**vec4 pos0 = gl_in[0].gl_Position;
+	vec4 pos1 = gl_in[1].gl_Position;
+	vec4 pos2 = gl_in[2].gl_Position;
+	vec4 pos3 = gl_in[3].gl_Position;**/
+
+	vec4 leftPos = pos1 + v * (pos3-pos1);
+	vec4 rightPos = pos0 + v * (pos2 - pos0);
+	vec4 pos = leftPos + u * (rightPos - leftPos);
+	pos+= (displacement*inTessLev[0]);
+	gl_Position = vec4(pos);
+	//gl_Position = pos * displacement;
 
 	//light
 	vec3 ld0 = outlightDirection[0];
